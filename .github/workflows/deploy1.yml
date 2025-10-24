@@ -35,7 +35,7 @@ jobs:
           context: ./springboot-app2
           file: ./springboot-app2/Dockerfile
           push: true
-          tags: jungwonalicia/springboot2-web3:latest
+          tags: sungil1226/springboot2-web3:latest
           platforms: linux/amd64
 
       # 5. 서버 배포 경로 변수 설정
@@ -43,7 +43,6 @@ jobs:
         id: vars
         run: |
           echo "DEPLOY_DIR=~/springboot2/springboot2-web3" >> $GITHUB_OUTPUT
-
 
       # 6. SSH로 EC2 접속 → docker compose 배포(수정)
       - name: Deploy via SSH (compose up)
@@ -53,10 +52,10 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: ${{ secrets.EC2_PORT }}
-          timeout: 60s                      # 연결 타임아웃 짧게
-          command_timeout: 20m              # 명령 실행 최대 시간
-          debug : true
-          script_stop: true                 # 오류 시 즉시 중단
+          timeout: 60s # 연결 타임아웃 짧게
+          command_timeout: 20m # 명령 실행 최대 시간
+          debug: true
+          script_stop: true # 오류 시 즉시 중단
           script: |
             set -e
             cd ~/springboot2
