@@ -1,6 +1,6 @@
 services:
   web2:
-    build: ./springboot-app2
+    image: sungil1226/springboot2-web3:latest
     container_name: springboot_app2
     ports:
       - "9090:8080"
